@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EduGenie - Learning Assistant</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f3f6ff;
+    color: #222;
+}
+
+/* NAVBAR */
+nav {
+    background: #4f46e5;
+    color: white;
+    padding: 18px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav button {
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 16px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+/* MAIN */
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 40px auto;
+}
+
+.card {
+    background: white;
+    padding: 30px;
+    margin: 20px 0;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px #0002;
+}
+
+h1 {
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+h2 {
+    margin-bottom: 15px;
+}
+
+p {
+    line-height: 1.6;
+}
+
+/* BUTTON */
+.btn {
+    display: inline-block;
+    background: #4f46e5;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 15px;
+}
+
+.btn:hover {
+    background: #3730a3;
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.feature {
+    text-align: center;
+}
+
+.icon {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+/* FORMS */
+.form-box {
+    max-width: 500px;
+    margin: 50px auto;
+}
+
+input {
+    width: 100%;
+    padding: 13px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+textarea {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+/* QUIZ */
+.question {
+    margin: 25px 0;
+}
+
+.question label {
+    display: block;
+    padding: 8px;
+}
+
+/* RESULT */
+.result {
+    background: #d1fae5;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+/* HIDDEN */
+.hidden {
+    display: none;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #666;
+}
+
+/* MOBILE */
+@media(max-width: 700px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    nav {
+        padding: 15px;
+    }
+
+    .container {
+        width: 94%;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">🎓 EduGenie</div>
+
+    <div>
+        <button onclick="showPage('home')">Home</button>
+        <button onclick="showPage('login')">Login</button>
+        <button onclick="showPage('register')">Register</button>
+    </div>
+</nav>
+
+
+<!-- ================= HOME ================= -->
+
+<section id="home" class="page">
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>EduGenie</h1>
+
+        <h2>AI-Powered Learning Assistant</h2>
+
+        <p>
+            EduGenie is a learning platform designed to help
+            students learn, practice and track their academic
+            progress.
+        </p>
+
+        <button class="btn" onclick="showPage('register')">
+            Get Started
+        </button>
+
+    </div>
+
+    <div class="grid">
+
+        <div class="card feature">
+            <div class="icon">📚</div>
+            <h2>Study Materials</h2>
+            <p>
+                Access useful study materials and learning topics.
+            </p>
+            <button class="btn" onclick="showPage('materials')">
+                Open
+            </button>
+        </div>
+
+        <div class="card feature">
+            <div class="icon">🤖</div>
+            <h2>AI Assistant</h2>
+            <p>
+                Ask questions and get simple study explanations.
+            </p>
+            <button class="btn" onclick="showPage('ai')">
+                Ask
+            </button>
+        </div>
+
+        <div class="card feature">
+            <div class="icon">📝</div>
+            <h2>Notes</h2>
+            <p>
+                Read important notes for your subjects.
+            </p>
+            <button class="btn" onclick="showPage('notes')">
+                View
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ================= REGISTER ================= -->
+
+<section id="register" class="page hidden">
+
+<div class="container">
+
+<div class="card form-box">
+
+<h1>Student Registration</h1>
+
+<form onsubmit="registerUser(event)">
+
+<input
+type="text"
+id="registerName"
+placeholder="Enter your name"
+required>
+
+<input
+type="email"
+id="registerEmail"
+placeholder="Enter email"
+required>
+
+<input
+type="password"
+id="registerPassword"
+placeholder="Enter password"
+required>
+
+<button class="btn" type="submit">
+Register
+</button>
+
+</form>
+
+<p style="margin-top:20px;">
+Already registered?
+<button class="btn" onclick="showPage('login')">
+Login
+</button>
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= LOGIN ================= -->
+
+<section id="login" class="page hidden">
+
+<div class="container">
+
+<div class="card form-box">
+
+<h1>Student Login</h1>
+
+<form onsubmit="loginUser(event)">
+
+<input
+type="email"
+id="loginEmail"
+placeholder="Email"
+required>
+
+<input
+type="password"
+id="loginPassword"
+placeholder="Password"
+required>
+
+<button class="btn" type="submit">
+Login
+</button>
+
+</form>
+
+<p id="loginMessage"></p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= DASHBOARD ================= -->
+
+<section id="dashboard" class="page hidden">
+
+<div class="container">
+
+<div class="card">
+
+<h1>
+Welcome <span id="studentName"></span> 👋
+</h1>
+
+<p>
+Welcome to your EduGenie student dashboard.
+</p>
+
+</div>
+
+<div class="grid">
+
+<div class="card feature">
+<div class="icon">📚</div>
+<h2>Study Materials</h2>
+<button class="btn" onclick="showPage('materials')">
+Open
+</button>
+</div>
+
+<div class="card feature">
+<div class="icon">🤖</div>
+<h2>AI Assistant</h2>
+<button class="btn" onclick="showPage('ai')">
+Ask
+</button>
+</div>
+
+<div class="card feature">
+<div class="icon">📝</div>
+<h2>Notes</h2>
+<button class="btn" onclick="showPage('notes')">
+View
+</button>
+</div>
+
+<div class="card feature">
+<div class="icon">❓</div>
+<h2>Quiz</h2>
+<button class="btn" onclick="showPage('quiz')">
+Start
+</button>
+</div>
+
+<div class="card feature">
+<div class="icon">📊</div>
+<h2>Results</h2>
+<button class="btn" onclick="showPage('results')">
+View
+</button>
+</div>
+
+<div class="card feature">
+<div class="icon">📅</div>
+<h2>Study Planner</h2>
+<button class="btn" onclick="showPage('planner')">
+Open
+</button>
+</div>
+
+</div>
+
+<button class="btn" onclick="logout()">
+Logout
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ================= MATERIALS ================= -->
+
+<section id="materials" class="page hidden">
+
+<div class="container">
+
+<h1>📚 Study Materials</h1>
+
+<div class="card">
+
+<h2>Data Structures</h2>
+
+<h3>Binary Tree</h3>
+
+<p>
+A binary tree is a tree data structure where each
+node can have at most two children.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Python</h2>
+
+<h3>Python Basics</h3>
+
+<p>
+Python is a high-level programming language
+with simple and readable syntax.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Database</h2>
+
+<h3>DBMS</h3>
+
+<p>
+DBMS is software used to store, manage and
+retrieve data.
+</p>
+
+</div>
+
+<button class="btn" onclick="showPage('dashboard')">
+Back to Dashboard
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ================= AI ================= -->
+
+<section id="ai" class="page hidden">
+
+<div class="container">
+
+<div class="card">
+
+<h1>🤖 EduGenie AI Assistant</h1>
+
+<p>
+Ask a question about Python, Data Structures or Database.
+</p>
+
+<input
+type="text"
+id="question"
+placeholder="Ask your question...">
+
+<button class="btn" onclick="askAI()">
+Ask EduGenie
+</button>
+
+<div id="answer" class="result hidden"></div>
+
+</div>
+
+<button class="btn" onclick="showPage('dashboard')">
+Back to Dashboard
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ================= NOTES ================= -->
+
+<section id="notes" class="page hidden">
+
+<div class="container">
+
+<h1>📝 Important Notes</h1>
+
+<div class="card">
+
+<h2>Binary Tree</h2>
+
+<ul>
+<li>Each node has at most two children.</li>
+<li>Children are called left and right.</li>
+<li>Common traversals are Preorder, Inorder and Postorder.</li>
+</ul>
+
+</div>
+
+<div class="card">
+
+<h2>Python</h2>
+
+<ul>
+<li>Python is a high-level programming language.</li>
+<li>It has simple syntax.</li>
+<li>It supports object-oriented programming.</li>
+</ul>
+
+</div>
+
+<button class="btn" onclick="showPage('dashboard')">
+Back to Dashboard
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ================= QUIZ ================= -->
+
+<section id="quiz" class="page hidden">
+
+<div class="container">
+
+<div class="card">
+
+<h1>❓ BCA Practice Quiz</h1>
+
+<form onsubmit="submitQuiz(event)">
+
+<div class="question">
+
+<h3>
+1. Which traversal visits Root → Left → Right?
+</h3>
+
+<label>
+<input type="radio" name="q1" value="A">
+Inorder
+</label>
+
+<label>
+<input type="radio" name="q1" value="B">
+Preorder
+</label>
+
+<label>
+<input type="radio" name="q1" value="C">
+Postorder
+</label>
+
+</div>
+
+
+<div class="question">
+
+<h3>
+2. Which keyword defines a function in Python?
+</h3>
+
+<label>
+<input type="radio" name="q2" value="A">
+function
+</label>
+
+<label>
+<input type="radio" name="q2" value="B">
+def
+</label>
+
+<label>
+<input type="radio" name="q2" value="C">
+func
+</label>
+
+</div>
+
+
+<div class="question">
+
+<h3>
+3. Which language is used to query databases?
+</h3>
+
+<label>
+<input type="radio" name="q3" value="A">
+HTML
+</label>
+
+<label>
+<input type="radio" name="q3" value="B">
+CSS
+</label>
+
+<label>
+<input type="radio" name="q3" value="C">
+SQL
+</label>
+
+</div>
+
+<button class="btn" type="submit">
+Submit Quiz
+</button>
+
+</form>
+
+<div id="quizResult"></div>
+
+</div>
+
+<button class="btn" onclick="showPage('dashboard')">
+Back to Dashboard
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ================= RESULTS ================= -->
+
+<section id="results" class="page hidden">
+
+<div class="container">
+
+<h1>📊 Quiz Results</h1>
+
+<div class="card">
+
+<div id="resultContent">
+No quiz attempts yet.
+</div>
+
+</div>
+
+<button class="btn" onclick="showPage('dashboard')">
+Back to Dashboard
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ================= PLANNER ================= -->
+
+<section id="planner" class="page hidden">
+
+<div class="container">
+
+<div class="card">
+
+<h1>📅 Study Planner</h1>
+
+<input
+type="text"
+id="taskInput"
+placeholder="Enter today's study task">
+
+<button class="btn" onclick="addTask()">
+Add Task
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>My Study Tasks</h2>
+
+<div id="taskList">
+No tasks added.
+</div>
+
+</div>
+
+<button class="btn" onclick="showPage('dashboard')">
+Back to Dashboard
+</button>
+
+</div>
+
+</section>
+
+
+<footer>
+© 2026 EduGenie | AI-Powered Learning Platform
+</footer>
+
+
+<script>
+
+/* ================= PAGE CONTROL ================= */
+
+function showPage(pageId) {
+
+    let pages = document.querySelectorAll(".page");
+
+    pages.forEach(function(page) {
+        page.classList.add("hidden");
+    });
+
+    document.getElementById(pageId).classList.remove("hidden");
+
+    window.scrollTo(0, 0);
+
+    if (pageId === "dashboard") {
+        loadDashboard();
+    }
+
+    if (pageId === "results") {
+        loadResults();
+    }
+
+    if (pageId === "planner") {
+        loadTasks();
+    }
+}
+
+
+/* ================= REGISTER ================= */
+
+function registerUser(event) {
+
+    event.preventDefault();
+
+    let name = document.getElementById("registerName").value;
+    let email = document.getElementById("registerEmail").value;
+    let password = document.getElementById("registerPassword").value;
+
+    let user = {
+        name: name,
+        email: email,
+        password: password
+    };
+
+    localStorage.setItem("edugenieUser", JSON.stringify(user));
+
+    alert("Registration successful!");
+
+    showPage("login");
+}
+
+
+/* ================= LOGIN ================= */
+
+function loginUser(event) {
+
+    event.preventDefault();
+
+    let email = document.getElementById("loginEmail").value;
+    let password = document.getElementById("loginPassword").value;
+
+    let savedUser = localStorage.getItem("edugenieUser");
+
+    if (!savedUser) {
+
+        document.getElementById("loginMessage").innerHTML =
+        "Please register first.";
+
+        return;
+    }
+
+    let user = JSON.parse(savedUser);
+
+    if (email === user.email && password === user.password) {
+
+        localStorage.setItem("edugenieLoggedIn", "true");
+
+        document.getElementById("loginMessage").innerHTML = "";
+
+        alert("Login successful!");
+
+        showPage("dashboard");
+
+    } else {
+
+        document.getElementById("loginMessage").innerHTML =
+        "<br><b style='color:red'>Invalid email or password.</b>";
+    }
+}
+
+
+/* ================= DASHBOARD ================= */
+
+function loadDashboard() {
+
+    let savedUser = localStorage.getItem("edugenieUser");
+
+    if (!savedUser) {
+
+        showPage("login");
+
+        return;
+    }
+
+    let user = JSON.parse(savedUser);
+
+    document.getElementById("studentName").innerText =
+    user.name;
+}
+
+
+/* ================= LOGOUT ================= */
+
+function logout() {
+
+    localStorage.removeItem("edugenieLoggedIn");
+
+    alert("You have been logged out.");
+
+    showPage("home");
+}
+
+
+/* ================= AI ASSISTANT ================= */
+
+function askAI() {
+
+    let question =
+    document.getElementById("question").value.toLowerCase();
+
+    let answer = "";
+
+    if (question.includes("binary tree")) {
+
+        answer =
+        "A Binary Tree is a tree data structure in which every node has at most two children called the left child and right child.";
+
+    }
+
+    else if (question.includes("python")) {
+
+        answer =
+        "Python is a high-level programming language. It is easy to learn and widely used in web development, AI and data analysis.";
+
+    }
+
+    else if (question.includes("database")) {
+
+        answer =
+        "A database is an organized collection of information that can be stored, managed and retrieved.";
+
+    }
+
+    else {
+
+        answer =
+        "EduGenie Demo Assistant: Please ask questions about Python, Data Structures or Database.";
+
+    }
+
+    let box = document.getElementById("answer");
+
+    box.innerHTML =
+    "<h3>Answer</h3><p>" + answer + "</p>";
+
+    box.classList.remove("hidden");
+}
+
+
+/* ================= QUIZ ================= */
+
+function submitQuiz(event) {
+
+    event.preventDefault();
+
+    let score = 0;
+
+    let q1 = document.querySelector(
+        'input[name="q1"]:checked'
+    );
+
+    let q2 = document.querySelector(
+        'input[name="q2"]:checked'
+    );
+
+    let q3 = document.querySelector(
+        'input[name="q3"]:checked'
+    );
+
+
+    if (q1 && q1.value === "B") {
+        score++;
+    }
+
+    if (q2 && q2.value === "B") {
+        score++;
+    }
+
+    if (q3 && q3.value === "C") {
+        score++;
+    }
+
+
+    localStorage.setItem(
+        "edugenieScore",
+        score
+    );
+
+
+    document.getElementById("quizResult").innerHTML =
+    "<div class='result'>" +
+    "<h2>Your Score: " +
+    score +
+    " / 3</h2>" +
+    "</div>";
+}
+
+
+/* ================= RESULTS ================= */
+
+function loadResults() {
+
+    let score =
+    localStorage.getItem("edugenieScore");
+
+    if (score === null) {
+
+        document.getElementById("resultContent").innerHTML =
+        "No quiz attempts yet.";
+
+        return;
+    }
+
+    document.getElementById("resultContent").innerHTML =
+    "<h2>Latest Quiz Result</h2>" +
+    "<p>Your Score: <b>" +
+    score +
+    " / 3</b></p>";
+}
+
+
+/* ================= STUDY PLANNER ================= */
+
+function addTask() {
+
+    let input =
+    document.getElementById("taskInput");
+
+    let task = input.value.trim();
+
+    if (task === "") {
+
+        alert("Please enter a task.");
+
+        return;
+    }
+
+
+    let tasks =
+    JSON.parse(
+        localStorage.getItem("edugenieTasks")
+    ) || [];
+
+
+    tasks.push(task);
+
+
+    localStorage.setItem(
+        "edugenieTasks",
+        JSON.stringify(tasks)
+    );
+
+
+    input.value = "";
+
+    loadTasks();
+}
+
+
+/* ================= LOAD TASKS ================= */
+
+function loadTasks() {
+
+    let tasks =
+    JSON.parse(
+        localStorage.getItem("edugenieTasks")
+    ) || [];
+
+
+    let list =
+    document.getElementById("taskList");
+
+
+    if (tasks.length === 0) {
+
+        list.innerHTML =
+        "No tasks added.";
+
+        return;
+    }
+
+
+    list.innerHTML = "";
+
+
+    tasks.forEach(function(task, index) {
+
+        list.innerHTML +=
+        "<p>" +
+        "⬜ " + task +
+        " <button onclick='deleteTask(" +
+        index +
+        ")'>Delete</button>" +
+        "</p>";
+
+    });
+}
+
+
+/* ================= DELETE TASK ================= */
+
+function deleteTask(index) {
+
+    let tasks =
+    JSON.parse(
+        localStorage.getItem("edugenieTasks")
+    ) || [];
+
+
+    tasks.splice(index, 1);
+
+
+    localStorage.setItem(
+        "edugenieTasks",
+        JSON.stringify(tasks)
+    );
+
+
+    loadTasks();
+}
+
+
+/* ================= START ================= */
+
+showPage("home");
+
+</script>
+
+</body>
+</html>
